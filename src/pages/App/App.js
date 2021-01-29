@@ -1,16 +1,13 @@
 import React from "react";
-import { Router, Route, Link } from "react-router-dom";
+import { BrowserRouter, Route, Link } from "react-router-dom";
 import { createBrowserHistory } from "history";
-
-import { useStyles } from "./Styles";
-import Home from "./Home";
-import PhoneBook from "./PhoneBook";
-import CovidState from "./CovidState";
-
+import FolderIcon from "@material-ui/icons/Folder";
+import RestoreIcon from "@material-ui/icons/Restore";
+import FavoriteIcon from "@material-ui/icons/Favorite";
+import LocationOnIcon from "@material-ui/icons/LocationOn";
 import {
     AppBar,
     Container,
-    IconButton,
     Toolbar,
     Typography,
     Box,
@@ -25,12 +22,11 @@ import {
     DialogActions,
 } from "@material-ui/core";
 
-import FolderIcon from "@material-ui/icons/Folder";
-import RestoreIcon from "@material-ui/icons/Restore";
-import FavoriteIcon from "@material-ui/icons/Favorite";
-import LocationOnIcon from "@material-ui/icons/LocationOn";
+import { useStyles } from "./Styles";
 
-import MenuIcon from "@material-ui/icons/Menu";
+import Home from "../Home/components/Home";
+import PhoneBook from "../PhoneBook/components/PhoneBook";
+import CovidState from "../CovidState/components/CovidState";
 
 function App() {
     const classes = useStyles();
@@ -52,7 +48,7 @@ function App() {
 
     return (
         <>
-            <Router history={history}>
+            <BrowserRouter history={history}>
                 <AppBar>
                     <Container className={classes.toolbar}>
                         <Toolbar>
@@ -143,7 +139,7 @@ function App() {
                 <Route exact path="/" component={Home} />
                 <Route path="/phonebook" component={PhoneBook} />
                 <Route path="/covidstate" component={CovidState} />
-            </Router>
+            </BrowserRouter>
 
             <footer className={classes.footer}>
                 {/* <Typography variant="h6" align="center" gutterBottom>

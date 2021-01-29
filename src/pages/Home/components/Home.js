@@ -1,5 +1,4 @@
 import React from "react";
-import { useStyles } from "./Styles";
 import {
     Container,
     Typography,
@@ -14,7 +13,13 @@ import {
 import LayerIcon from "@material-ui/icons/Layers";
 import PlayCircleFieldIcon from "@material-ui/icons/PlayCircleFilled";
 
-const grids = [1, 2, 3, 4, 5, 6, 7, 8];
+import { useStyles } from "./Styles";
+
+import {
+    BACKGROUND_IMAGE,
+    GRIDS_IMAGE,
+    HOME_GRIDS,
+} from "../constants/homeConst";
 
 function Home() {
     const classes = useStyles();
@@ -24,7 +29,7 @@ function Home() {
                 <Paper
                     className={classes.homePost}
                     style={{
-                        backgroundImage: `url(https://source.unsplash.com/random)`,
+                        backgroundImage: BACKGROUND_IMAGE,
                     }}
                 >
                     <Container fixed>
@@ -108,12 +113,12 @@ function Home() {
                 </div>
                 <Container className={classes.cardGrid} maxWidth="md">
                     <Grid container spacing={2}>
-                        {grids.map((item) => (
+                        {HOME_GRIDS.map((item) => (
                             <Grid item key={item} xs={12} sm={6} md={3}>
                                 <Card className={classes.card}>
                                     <CardMedia
                                         className={classes.cardMedia}
-                                        image="https://source.unsplash.com/random"
+                                        image={GRIDS_IMAGE}
                                         title={item}
                                     />
                                     <CardContent
