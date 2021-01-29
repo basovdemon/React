@@ -1,19 +1,7 @@
 import { makeStyles } from "@material-ui/core/styles";
-import {
-    CenterFocusWeakRounded,
-    FormatAlignCenter,
-    LabelImportantRounded,
-} from "@material-ui/icons";
 
 const useStyles = makeStyles((theme) => ({
     root: {
-        flexGrow: 1,
-    },
-    navigation: {
-        color: theme.palette.common.white,
-        fontSize: "24px",
-    },
-    title: {
         flexGrow: 1,
     },
     homePost: {
@@ -31,7 +19,7 @@ const useStyles = makeStyles((theme) => ({
         bottom: 0,
         right: 0,
         left: 0,
-        backgroundColor: "rgba(255,255,255,.531)",
+        backgroundColor: "rgba(0,0,0,.4321)",
     },
     homePostContent: {
         position: "relative",
@@ -46,28 +34,6 @@ const useStyles = makeStyles((theme) => ({
     },
     cardGrid: {
         marginTop: theme.spacing(4),
-    },
-    footer: {
-        marginTop: theme.spacing(4),
-    },
-
-    phonebook: {
-        marginTop: theme.spacing(12),
-        marginBottom: theme.spacing(4),
-    },
-    contacts: {
-        marginBottom: theme.spacing(4),
-    },
-    contact: {
-        marginTop: theme.spacing(2),
-    },
-
-    covid: {
-        marginTop: theme.spacing(12),
-    },
-    covidGrid: {
-        position: "relative",
-        minHeight: "400px",
     },
 }));
 
