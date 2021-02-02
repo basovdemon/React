@@ -18,6 +18,10 @@ const useStyles = makeStyles((theme) => ({
         height: "100%",
         flexGrow: 1,
     },
+    loading: {
+        display: "flex",
+        justifyContent: "center",
+    },
 }));
 
 export { useStyles };

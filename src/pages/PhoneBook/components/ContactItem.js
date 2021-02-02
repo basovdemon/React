@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import PropTypes from "prop-types";
 import {
-    Container,
+    ListItem,
     Button,
     DialogTitle,
     DialogContent,
@@ -11,6 +11,7 @@ import {
     DialogActions,
     Box,
     Typography,
+    Checkbox,
     Grid,
     Card,
     CardMedia,
@@ -19,11 +20,14 @@ import {
 } from "@material-ui/core";
 
 import { useStyles } from "./Styles";
+import EditContact from "./EditContact";
 
 import Context from "../context/context";
 
 function ContactItem({ contact, index, onChange }) {
     const { deleteContact } = useContext(Context);
+    const { editContact } = useContext(Context);
+
     const classes = useStyles();
     let selectedClass;
 
@@ -33,26 +37,35 @@ function ContactItem({ contact, index, onChange }) {
     console.log("contact", contact);
     return (
         <div>
-            <li className={classes.li}>
-                <span className={selectedClass}>
-                    <input
-                        type="checkbox"
-                        checked={contact.selected}
-                        onChange={() => onChange(contact.id)}
-                    />
+            {/* */}
+            <ListItem className={classes.li}>
+                {/* <span className={selectedClass}> */}
+                {/* <Box component="span" m={1}> */}
+                <Checkbox
+                    type="checkbox"
+                    checked={contact.selected}
+                    onChange={() => onChange(contact.id)}
+                />
 
-                    <strong>{index++}</strong>
-                    <h6>{contact.name}</h6>
-                    <h6>{contact.phone}</h6>
-                </span>
+                <Typography variant="h5">{++index}</Typography>
+                <Typography variant="h6">{contact.name}</Typography>
+                <Typography variant="h6">{contact.phone}</Typography>
+                {/* </Box> */}
 
-                <button
+                <Button
+                    className={classes.orange}
+                    onClick={editContact.bind(null, contact)}
+                >
+                    Edit
+                </Button>
+                <Button
                     className={classes.rm}
                     onClick={deleteContact.bind(null, contact.id)}
                 >
-                    &types;
-                </button>
-            </li>
+                    Delete
+                </Button>
+            </ListItem>
+            <EditContact />
         </div>
     );
 }

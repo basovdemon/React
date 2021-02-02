@@ -12,7 +12,7 @@ function ContactList(props) {
                         contact={contact}
                         key={contact.id}
                         index={index}
-                        onChange={props.onEdit}
+                        onChange={props.onSelect}
                     />
                 );
             })}
@@ -22,7 +22,7 @@ function ContactList(props) {
 
 ContactList.propTypes = {
     contacts: PropTypes.arrayOf(PropTypes.object).isRequired,
-    onEdit: PropTypes.func.isRequired,
+    onSelect: PropTypes.func.isRequired,
 };
 
 export default ContactList;
