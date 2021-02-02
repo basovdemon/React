@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Typography, Container } from "@material-ui/core";
+import { Typography, Container, CircularProgress } from "@material-ui/core";
 import MUIDataTable from "mui-datatables";
 import axios from "axios";
 
@@ -9,7 +9,7 @@ function CovidState() {
     const classes = useStyles();
     const DataLoading = OnLoadingCovidData(CovidData);
     const [covidState, setCovidState] = useState({
-        loading: false,
+        loading: true,
         covidData: null,
     });
 
@@ -65,13 +65,11 @@ function CovidData(props) {
 
     return (
         <Container className={classes.covid}>
-            <div>
-                <MUIDataTable
-                    title={"Covid State table"}
-                    data={dataGridData}
-                    columns={columns}
-                />
-            </div>
+            <MUIDataTable
+                title={"Covid State table"}
+                data={dataGridData}
+                columns={columns}
+            />
         </Container>
     );
 }
@@ -81,8 +79,11 @@ function OnLoadingCovidData(Component) {
         if (!isLoading) return <Component {...props} />;
         else
             return (
-                <Container>
-                    <Typography>Wait plz...</Typography>
+                <Container
+                    style={{ display: "flex", justifyContent: "center" }}
+                >
+                    <CircularProgress />
+                    {/* <Typography>Wait plz...</Typography> */}
                 </Container>
             );
     };

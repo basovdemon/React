@@ -22,6 +22,7 @@ import { useStyles } from "./Styles";
 import ContactItem from "./ContactItem";
 import ContactList from "./ContactList";
 import AddContact from "./AddContact";
+import EditContact from "./EditContact";
 
 import Context from "../context/context";
 
@@ -29,17 +30,28 @@ function PhoneBook() {
     const classes = useStyles();
 
     let [contacts, setContacts] = React.useState([
-        { id: 0, selected: false, name: "Nick", phone: "321654" },
-        { id: 1, selected: false, name: "Nick", phone: "321654" },
-        { id: 2, selected: false, name: "Nick", phone: "321654" },
-        { id: 3, selected: false, name: "Nick", phone: "321654" },
+        { id: 0, selected: false, name: "Nick", phone: "13698642" },
+        { id: 1, selected: false, name: "Mike", phone: "24689753" },
     ]);
 
-    function editContact(id) {
+    function selectContact(id) {
         setContacts(
             (contacts = contacts.map((contact) => {
                 if (contact.id === id) {
                     contact.selected = !contact.selected;
+                }
+                return contact;
+            }))
+        );
+    }
+
+    function editContact(editedContact) {
+        debugger;
+        setContacts(
+            (contacts = contacts.map((contact) => {
+                if (contact.id === editedContact.id) {
+                    contact.name = editedContact.name;
+                    contact.phone = editedContact.phone;
                 }
                 return contact;
             }))
@@ -65,13 +77,17 @@ function PhoneBook() {
 
     return (
         <>
-            <Context.Provider value={{ deleteContact }}>
+            <Context.Provider value={{ deleteContact, editContact }}>
                 <Container className={classes.phonebook} maxWidth="md">
                     <AddContact onCreate={addContact} />
+                    <EditContact onEdit={editContact} />
                     {contacts.length ? (
-                        <ContactList contacts={contacts} onEdit={editContact} />
+                        <ContactList
+                            contacts={contacts}
+                            onSelect={selectContact}
+                        />
                     ) : (
-                        <Typography>No any contacts yet =( </Typography>
+                        <Typography> No any contacts yet =( </Typography>
                     )}
                 </Container>
             </Context.Provider>

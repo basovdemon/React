@@ -10,12 +10,6 @@ import {
     Dialog,
     DialogActions,
     Box,
-    Typography,
-    Grid,
-    Card,
-    CardMedia,
-    CardContent,
-    CardActions,
 } from "@material-ui/core";
 
 function useInputValue(defaultValues = { name: "", phone: "" }) {
@@ -34,7 +28,7 @@ function useInputValue(defaultValues = { name: "", phone: "" }) {
     };
 }
 
-function AddContact({ onCreate }) {
+function EditContact({ onEdit, contact }) {
     const [open, setOpen] = React.useState(false);
 
     const handleClickOpen = () => {
@@ -44,13 +38,13 @@ function AddContact({ onCreate }) {
         setOpen(false);
     };
 
-    const input = useInputValue({ name: "", phone: "" }); //
+    const input = useInputValue(contact); //
 
     const saveHandler = (event) => {
         event.preventDefault();
 
         if (input.value()) {
-            onCreate(input.value());
+            onEdit(input.value());
             input.clear();
             handleClose();
         }
@@ -58,9 +52,6 @@ function AddContact({ onCreate }) {
 
     return (
         <Box>
-            <Button variant="outlined" onClick={handleClickOpen}>
-                Add Contact
-            </Button>
             <Dialog
                 open={open}
                 onClose={handleClose}
@@ -98,8 +89,9 @@ function AddContact({ onCreate }) {
     );
 }
 
-AddContact.propTypes = {
-    onCreate: PropTypes.func.isRequired,
+EditContact.propTypes = {
+    onEdit: PropTypes.func.isRequired,
+    contact: PropTypes.object,
 };
 
-export default AddContact;
+export default EditContact;

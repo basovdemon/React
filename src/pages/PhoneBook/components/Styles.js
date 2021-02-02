@@ -34,6 +34,10 @@ const useStyles = makeStyles((theme) => ({
         background: "red",
     },
 
+    orange: {
+        backgroundColor: "orange",
+    },
+
     selected: {
         backgroundColor: "blue",
     },
