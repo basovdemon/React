@@ -1,28 +1,9 @@
 import React from "react";
-import PropTypes from "prop-types";
-import {
-    Container,
-    Button,
-    DialogTitle,
-    DialogContent,
-    DialogContentText,
-    TextField,
-    Dialog,
-    DialogActions,
-    Box,
-    Typography,
-    Grid,
-    Card,
-    CardMedia,
-    CardContent,
-    CardActions,
-} from "@material-ui/core";
+import { Button, Container, Typography } from "@material-ui/core";
 
-import { useStyles } from "./Styles";
-import ContactItem from "./ContactItem";
+import { useStyles } from "./styles";
 import ContactList from "./ContactList";
 import AddContact from "./AddContact";
-import EditContact from "./EditContact";
 
 import Context from "../context/context";
 
@@ -75,12 +56,24 @@ function PhoneBook() {
         );
     }
 
+    function deleteSelected() {
+        setContacts(contacts.filter((cont) => !cont.selected));
+    }
+
     return (
         <>
             <Context.Provider value={{ deleteContact, editContact }}>
                 <Container className={classes.phonebook} maxWidth="md">
                     <AddContact onCreate={addContact} />
-                    <EditContact onEdit={editContact} />
+                    <br />
+                    <Button
+                        variant="outlined"
+                        style={{ backgroundColor: "red" }}
+                        onClick={deleteSelected}
+                    >
+                        Delete Selected
+                    </Button>
+                    {/* <EditContact onEdit={editContact} /> */}
                     {contacts.length ? (
                         <ContactList
                             contacts={contacts}

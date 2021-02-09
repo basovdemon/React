@@ -13,7 +13,7 @@ import {
 import LayerIcon from "@material-ui/icons/Layers";
 import PlayCircleFieldIcon from "@material-ui/icons/PlayCircleFilled";
 
-import { useStyles } from "./Styles";
+import { useStyles } from "./styles";
 
 import {
     BACKGROUND_IMAGE,
