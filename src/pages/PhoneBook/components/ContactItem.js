@@ -1,26 +1,8 @@
 import React, { useContext } from "react";
 import PropTypes from "prop-types";
-import {
-    ListItem,
-    Button,
-    DialogTitle,
-    DialogContent,
-    DialogContentText,
-    TextField,
-    Dialog,
-    DialogActions,
-    Box,
-    Typography,
-    Checkbox,
-    Grid,
-    Card,
-    CardMedia,
-    CardContent,
-    CardActions,
-} from "@material-ui/core";
+import { ListItem, Button, Typography, Checkbox } from "@material-ui/core";
 
-import { useStyles } from "./Styles";
-import EditContact from "./EditContact";
+import { useStyles } from "./styles";
 
 import Context from "../context/context";
 
@@ -29,18 +11,13 @@ function ContactItem({ contact, index, onChange }) {
     const { editContact } = useContext(Context);
 
     const classes = useStyles();
-    let selectedClass;
 
     if (contact.selected) {
-        selectedClass = classes.selected;
     }
     console.log("contact", contact);
     return (
         <div>
-            {/* */}
             <ListItem className={classes.li}>
-                {/* <span className={selectedClass}> */}
-                {/* <Box component="span" m={1}> */}
                 <Checkbox
                     type="checkbox"
                     checked={contact.selected}
@@ -50,7 +27,6 @@ function ContactItem({ contact, index, onChange }) {
                 <Typography variant="h5">{++index}</Typography>
                 <Typography variant="h6">{contact.name}</Typography>
                 <Typography variant="h6">{contact.phone}</Typography>
-                {/* </Box> */}
 
                 <Button
                     className={classes.orange}
@@ -65,7 +41,6 @@ function ContactItem({ contact, index, onChange }) {
                     Delete
                 </Button>
             </ListItem>
-            <EditContact />
         </div>
     );
 }
@@ -77,34 +52,3 @@ ContactItem.propTypes = {
 };
 
 export default ContactItem;
-
-{
-    /* <Typography>Your Contacts:</Typography>
-                <Container className={classes.contacts} maxWidth="md">
-                    <Grid container spacing={2}>
-                        {contacts.map((contact) => (
-                            <Grid item key={contact.id}>
-                                <Card className={classes.contact}>
-                                    <CardMedia
-                                        image="https://source.unsplash.com/random"
-                                        title={contact}
-                                    />
-                                    <CardContent>
-                                        <Typography variant="h6" gutterBottom>
-                                            Name: {contact.name}
-                                        </Typography>
-                                        <Typography variant="h6" gutterBottom>
-                                            Phone: {contact.phone}
-                                        </Typography>
-                                    </CardContent>
-                                    <CardActions>
-                                        <Button size="small" color="primary">
-                                            Edit
-                                        </Button>
-                                    </CardActions>
-                                </Card>
-                            </Grid>
-                        ))}
-                    </Grid>
-                </Container> */
-}
