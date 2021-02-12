@@ -1,42 +1,47 @@
-import React, { useContext } from "react";
+import React from "react";
 import PropTypes from "prop-types";
 import { ListItem, Button, Typography, Checkbox } from "@material-ui/core";
+import { useDispatch } from "react-redux";
 
 import { useStyles } from "./styles";
 
-import Context from "../context/context";
+import {
+    deleteContact,
+    editContact,
+    selectContact,
+} from "../../../redux/actions";
 
-function ContactItem({ contact, index, onChange }) {
-    const { deleteContact } = useContext(Context);
-    const { editContact } = useContext(Context);
-
+function ContactItem({ contact, index }) {
     const classes = useStyles();
 
-    if (contact.selected) {
+    const dispatch = useDispatch();
+
+    function selectContactHandler(id) {
+        return () => dispatch(selectContact(id));
     }
-    console.log("contact", contact);
+
     return (
         <div>
             <ListItem className={classes.li}>
                 <Checkbox
                     type="checkbox"
                     checked={contact.selected}
-                    onChange={() => onChange(contact.id)}
+                    onChange={selectContactHandler(contact.id)}
                 />
 
-                <Typography variant="h5">{++index}</Typography>
+                <Typography variant="h5">{index + 1}</Typography>
                 <Typography variant="h6">{contact.name}</Typography>
                 <Typography variant="h6">{contact.phone}</Typography>
 
                 <Button
                     className={classes.orange}
-                    onClick={editContact.bind(null, contact)}
+                    onClick={() => dispatch(editContact(contact))}
                 >
                     Edit
                 </Button>
                 <Button
                     className={classes.rm}
-                    onClick={deleteContact.bind(null, contact.id)}
+                    onClick={() => dispatch(deleteContact(contact.id))}
                 >
                     Delete
                 </Button>
@@ -48,7 +53,6 @@ function ContactItem({ contact, index, onChange }) {
 ContactItem.propTypes = {
     contact: PropTypes.object.isRequired,
     index: PropTypes.number,
-    onChange: PropTypes.func.isRequired,
 };
 
 export default ContactItem;

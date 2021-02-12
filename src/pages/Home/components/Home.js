@@ -96,7 +96,7 @@ function Home() {
                             cillum adipisicing eu ex ea aliquip qui id laboris.
                         </Typography>
                         <div className={classes.mainButtons}>
-                            <Grid container spacing={5} justify="senter">
+                            <Grid container spacing={5} justify="center">
                                 <Grid item>
                                     <Button variant="contained" color="primary">
                                         Start Now
