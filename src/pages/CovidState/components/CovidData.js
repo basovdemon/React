@@ -1,4 +1,4 @@
-import { Typography, Container, Button } from "@material-ui/core";
+import { Container, Button } from "@material-ui/core";
 import MUIDataTable from "mui-datatables";
 import { useDispatch, useSelector } from "react-redux";
 
@@ -36,7 +36,6 @@ export function CovidData() {
             </>
         );
 
-    debugger;
     const dataGridData = covidData.Countries.map((obj) => ({
         id: obj.ID,
         Country: obj.Country,

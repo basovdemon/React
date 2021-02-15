@@ -9,14 +9,12 @@ export function* sagaWatcher() {
 }
 
 function* sagaWorker() {
-    debugger;
     try {
         yield put(showLoader());
         const payload = yield call(fetchCovid);
         yield put({ type: FETCH_COVID, payload });
         yield put(hideLoader());
     } catch (e) {
-        debugger;
         console.log(e);
         yield put(showAlert("Smth goes wrong..."));
         yield put(hideAlert());

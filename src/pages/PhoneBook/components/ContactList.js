@@ -1,12 +1,12 @@
 import React from "react";
-import PropTypes from "prop-types";
 import { connect } from "react-redux";
+import { List } from "@material-ui/core";
 
 import ContactItem from "./ContactItem";
 
 function ContactList(props) {
     return (
-        <ul>
+        <List>
             {props.contacts.map((contact, index) => {
                 return (
                     <ContactItem
@@ -16,13 +16,9 @@ function ContactList(props) {
                     />
                 );
             })}
-        </ul>
+        </List>
     );
 }
-
-ContactList.propTypes = {
-    contacts: PropTypes.arrayOf(PropTypes.object).isRequired,
-};
 
 const mapStateToProps = (state) => {
     return { contacts: state.contacts.contacts };

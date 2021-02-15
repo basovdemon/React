@@ -23,7 +23,6 @@ export const phoneBookReducer = (state = initialState, action) => {
             };
 
         case EDIT_CONTACT:
-            debugger;
             return {
                 ...state,
                 contacts: state.contacts.map((o) => {

@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { ListItem, Button, Typography, Checkbox } from "@material-ui/core";
+import { ListItem, Button, Typography, Checkbox, Box } from "@material-ui/core";
 import { useDispatch } from "react-redux";
 
 import { useStyles } from "./styles";
@@ -22,7 +22,6 @@ function ContactItem({ contact, index }) {
     }
 
     function editContactHandler(newContact) {
-        debugger;
         dispatch(
             editContact({
                 id: contact.id,
@@ -34,37 +33,51 @@ function ContactItem({ contact, index }) {
     }
 
     return (
-        <div>
+        <>
             <ListItem className={classes.li}>
-                <Checkbox
-                    type="checkbox"
-                    checked={contact.selected}
-                    onChange={selectContactHandler(contact.id)}
-                />
+                <Box
+                    style={{
+                        display: "flex",
+                        justifyContent: "center",
+                    }}
+                >
+                    <Checkbox
+                        type="checkbox"
+                        checked={contact.selected}
+                        onChange={selectContactHandler(contact.id)}
+                    />
 
-                <Typography variant="h5">{index + 1}</Typography>
+                    <Typography>{index + 1}</Typography>
+                </Box>
                 <Typography variant="h6">{contact.name}</Typography>
                 <Typography variant="h6">{contact.phone}</Typography>
-
-                <AddContact
-                    onCreate={editContactHandler}
-                    isEdit={true}
-                    currentContact={contact}
-                />
-                <Button
-                    className={classes.rm}
-                    onClick={() => dispatch(deleteContact(contact.id))}
+                <Box
+                    style={{
+                        display: "flex",
+                        justifyContent: "center",
+                    }}
                 >
-                    Delete
-                </Button>
+                    <AddContact
+                        onCreate={editContactHandler}
+                        isEdit={true}
+                        currentContact={contact}
+                    />
+                    <Button
+                        className={classes.rm}
+                        onClick={() => dispatch(deleteContact(contact.id))}
+                        style={{ marginLeft: "10px" }}
+                    >
+                        Delete
+                    </Button>
+                </Box>
             </ListItem>
-        </div>
+        </>
     );
 }
 
 ContactItem.propTypes = {
     contact: PropTypes.object.isRequired,
-    index: PropTypes.number,
+    index: PropTypes.number.isRequired,
 };
 
 export default ContactItem;
