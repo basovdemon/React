@@ -4,14 +4,12 @@ import {
     DELETE_CONTACT,
     SELECT_CONTACT,
     DELETE_SELECTED_CONTACTS,
-    FETCH_COVID,
     SHOW_LOADER,
     HIDE_LOADER,
     SHOW_ALERT,
     HIDE_ALERT,
     REQUEST_COVID,
 } from "./types";
-import axios from "axios";
 
 export function showLoader() {
     return {

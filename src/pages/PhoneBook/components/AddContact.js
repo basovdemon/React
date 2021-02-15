@@ -13,7 +13,7 @@ import {
 
 function useInputValue(defaultValues = { name: "", phone: "" }) {
     const [values, setValue] = useState(defaultValues);
-    debugger;
+
     return {
         bind: {
             values,
@@ -38,11 +38,11 @@ function AddContact({ onCreate, isEdit = false, currentContact = null }) {
         setOpen(false);
     };
 
-    const input = useInputValue(
-        isEdit
-            ? { name: currentContact.name, phone: currentContact.phone }
-            : { name: "", phone: "" }
-    ); //
+    const defaultValues = isEdit
+        ? { name: currentContact.name, phone: currentContact.phone }
+        : { name: "", phone: "" };
+
+    const input = useInputValue(defaultValues); //
 
     const saveHandler = (event) => {
         event.preventDefault();
@@ -74,6 +74,7 @@ function AddContact({ onCreate, isEdit = false, currentContact = null }) {
                         label="Name"
                         type="text"
                         name="name"
+                        defaultValue={defaultValues.name}
                         fullWidth
                         {...input.bind}
                     />
@@ -83,6 +84,7 @@ function AddContact({ onCreate, isEdit = false, currentContact = null }) {
                         label="Phone"
                         type="tel"
                         name="phone"
+                        defaultValue={defaultValues.phone}
                         fullWidth
                         {...input.bind}
                     />
@@ -98,6 +100,8 @@ function AddContact({ onCreate, isEdit = false, currentContact = null }) {
 
 AddContact.propTypes = {
     onCreate: PropTypes.func.isRequired,
+    isEdit: PropTypes.bool,
+    currentContact: PropTypes.object,
 };
 
 export default AddContact;

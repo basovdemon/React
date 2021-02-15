@@ -1,9 +1,4 @@
 import { makeStyles } from "@material-ui/core/styles";
-import {
-    CenterFocusWeakRounded,
-    FormatAlignCenter,
-    LabelImportantRounded,
-} from "@material-ui/icons";
 
 const useStyles = makeStyles((theme) => ({
     root: {
