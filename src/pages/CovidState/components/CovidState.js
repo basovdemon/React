@@ -11,14 +11,14 @@ import { Loader } from "../../App/components/Loader";
 function CovidState() {
     const classes = useStyles();
     const loading = useSelector((state) => state.app.loading);
-    if (loading) return Loader;
-
     debugger;
-    const DataLoading = loading ? Loader : CovidData;
+    if (loading) {
+        return <Loader />;
+    }
 
     return (
         <Container className={classes.covid}>
-            <DataLoading />
+            <CovidData />
         </Container>
     );
 }

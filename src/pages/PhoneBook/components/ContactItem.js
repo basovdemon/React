@@ -4,6 +4,7 @@ import { ListItem, Button, Typography, Checkbox } from "@material-ui/core";
 import { useDispatch } from "react-redux";
 
 import { useStyles } from "./styles";
+import AddContact from "./AddContact";
 
 import {
     deleteContact,
@@ -20,6 +21,18 @@ function ContactItem({ contact, index }) {
         return () => dispatch(selectContact(id));
     }
 
+    function editContactHandler(newContact) {
+        debugger;
+        dispatch(
+            editContact({
+                id: contact.id,
+                selected: contact.selected,
+                name: newContact.name,
+                phone: newContact.phone,
+            })
+        );
+    }
+
     return (
         <div>
             <ListItem className={classes.li}>
@@ -33,12 +46,11 @@ function ContactItem({ contact, index }) {
                 <Typography variant="h6">{contact.name}</Typography>
                 <Typography variant="h6">{contact.phone}</Typography>
 
-                <Button
-                    className={classes.orange}
-                    onClick={() => dispatch(editContact(contact))}
-                >
-                    Edit
-                </Button>
+                <AddContact
+                    onCreate={editContactHandler}
+                    isEdit={true}
+                    currentContact={contact}
+                />
                 <Button
                     className={classes.rm}
                     onClick={() => dispatch(deleteContact(contact.id))}

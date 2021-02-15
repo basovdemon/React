@@ -1,4 +1,4 @@
-import { FETCH_COVID } from "./types";
+import { FETCH_COVID } from "../types";
 
 const initialState = {
     covidData: [],

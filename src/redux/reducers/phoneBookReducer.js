@@ -4,7 +4,7 @@ import {
     EDIT_CONTACT,
     SELECT_CONTACT,
     DELETE_SELECTED_CONTACTS,
-} from "./types";
+} from "../types";
 
 const initialState = {
     contacts: [
@@ -23,9 +23,15 @@ export const phoneBookReducer = (state = initialState, action) => {
             };
 
         case EDIT_CONTACT:
+            debugger;
             return {
                 ...state,
-                contacts: { ...state.contacts, ...action.payload },
+                contacts: state.contacts.map((o) => {
+                    if (o.id === action.payload.id) {
+                        return action.payload;
+                    }
+                    return o;
+                }),
             };
 
         case DELETE_CONTACT:

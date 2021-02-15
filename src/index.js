@@ -6,7 +6,7 @@ import thunk from "redux-thunk";
 import createSagaMiddleware from "redux-saga";
 
 import App from "./pages/App/components/App";
-import { rootReducer } from "./redux/rootReducer";
+import { rootReducer } from "./redux/reducers/rootReducer";
 import { forbiddenNameMiddleware } from "./redux/middleware";
 import { sagaWatcher } from "./redux/sagas";
 

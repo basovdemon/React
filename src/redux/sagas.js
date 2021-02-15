@@ -1,6 +1,5 @@
 import { takeEvery, put, call } from "redux-saga/effects";
 import api from "../api/api";
-import axios from "axios";
 
 import { hideAlert, hideLoader, showAlert, showLoader } from "./actions";
 import { FETCH_COVID, REQUEST_COVID } from "./types";
@@ -17,6 +16,7 @@ function* sagaWorker() {
         yield put({ type: FETCH_COVID, payload });
         yield put(hideLoader());
     } catch (e) {
+        debugger;
         console.log(e);
         yield put(showAlert("Smth goes wrong..."));
         yield put(hideAlert());
@@ -24,9 +24,5 @@ function* sagaWorker() {
 }
 
 async function fetchCovid() {
-    const response = await axios.get("https://api.covid19api.com/summary", {
-        headers: { "Access-Control-Allow-Origin": "*" },
-    });
-    return await response.data;
-    // return await (await api.get()).data;
+    return await (await api.get()).data;
 }

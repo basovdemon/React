@@ -81,19 +81,4 @@ export function deleteSelectedContacts(contacts) {
 
 export function fetchCovid() {
     return { type: REQUEST_COVID };
-    //  ;
-    // const apiUrl = "https://api.covid19api.com/summary";
-    // return async (dispatch) => {
-    //     try {
-    //         dispatch(showLoader());
-    //         const response = await axios.get(apiUrl, {
-    //             headers: { "Access-Control-Allow-Origin": "*" },
-    //         });
-    //         const json = await response.json();
-    //         dispatch({ type: FETCH_COVID, payload: json });
-    //         dispatch(hideLoader());
-    //     } catch (e) {
-    //         dispatch(showAlert("Smth goes wrong..."));
-    //     }
-    // };
 }
