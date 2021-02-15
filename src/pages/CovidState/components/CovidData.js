@@ -1,11 +1,17 @@
-import { Typography, Container } from "@material-ui/core";
+import { Typography, Container, Button } from "@material-ui/core";
 import MUIDataTable from "mui-datatables";
+import { useDispatch, useSelector } from "react-redux";
 
 import { useStyles } from "./styles";
 
-export function CovidData(props) {
+import { fetchCovid } from "../../../redux/actions";
+
+export function CovidData() {
     const classes = useStyles();
-    const { covidData } = props;
+
+    const dispatch = useDispatch();
+    const covidData = useSelector((state) => state.fetchedCovidData.covidData);
+
     const columns = [
         "Country",
         "CountryCode",
@@ -18,8 +24,19 @@ export function CovidData(props) {
         "TotalRecovered",
     ];
 
-    if (!covidData) return <Typography> Has no any data</Typography>;
+    if (!covidData || covidData.length === 0)
+        return (
+            <>
+                <Button
+                    variant="outlined"
+                    onClick={() => dispatch(fetchCovid())}
+                >
+                    Get Covid Data
+                </Button>
+            </>
+        );
 
+    debugger;
     const dataGridData = covidData.Countries.map((obj) => ({
         id: obj.ID,
         Country: obj.Country,

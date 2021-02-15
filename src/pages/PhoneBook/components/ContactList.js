@@ -1,5 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
+import { connect } from "react-redux";
 
 import ContactItem from "./ContactItem";
 
@@ -12,7 +13,6 @@ function ContactList(props) {
                         contact={contact}
                         key={contact.id}
                         index={index}
-                        onChange={props.onSelect}
                     />
                 );
             })}
@@ -22,7 +22,10 @@ function ContactList(props) {
 
 ContactList.propTypes = {
     contacts: PropTypes.arrayOf(PropTypes.object).isRequired,
-    onSelect: PropTypes.func.isRequired,
 };
 
-export default ContactList;
+const mapStateToProps = (state) => {
+    return { contacts: state.contacts.contacts };
+};
+
+export default connect(mapStateToProps, null)(ContactList);

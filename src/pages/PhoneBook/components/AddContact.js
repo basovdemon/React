@@ -13,6 +13,7 @@ import {
 
 function useInputValue(defaultValues = { name: "", phone: "" }) {
     const [values, setValue] = useState(defaultValues);
+    debugger;
     return {
         bind: {
             values,
@@ -22,12 +23,12 @@ function useInputValue(defaultValues = { name: "", phone: "" }) {
                     [event.target.name]: event.target.value,
                 }),
         },
-        clear: () => setValue({ name: "", phone: "" }),
+        clear: () => setValue(defaultValues),
         value: () => values,
     };
 }
 
-function AddContact({ onCreate }) {
+function AddContact({ onCreate, isEdit = false, currentContact = null }) {
     const [open, setOpen] = React.useState(false);
 
     const handleClickOpen = () => {
@@ -37,7 +38,11 @@ function AddContact({ onCreate }) {
         setOpen(false);
     };
 
-    const input = useInputValue({ name: "", phone: "" }); //
+    const input = useInputValue(
+        isEdit
+            ? { name: currentContact.name, phone: currentContact.phone }
+            : { name: "", phone: "" }
+    ); //
 
     const saveHandler = (event) => {
         event.preventDefault();
@@ -52,7 +57,7 @@ function AddContact({ onCreate }) {
     return (
         <Box>
             <Button variant="outlined" onClick={handleClickOpen}>
-                Add Contact
+                {isEdit ? "Edit" : "Add Contact"}
             </Button>
             <Dialog
                 open={open}

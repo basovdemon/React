@@ -1,34 +1,24 @@
 import React, { useEffect, useState } from "react";
 import { Typography, Container, CircularProgress } from "@material-ui/core";
-import MUIDataTable from "mui-datatables";
-import axios from "axios";
+
+import { useSelector } from "react-redux";
 
 import { useStyles } from "./styles";
-import { OnLoadingCovidData } from "./OnLoadingCovidData";
 import { CovidData } from "./CovidData";
+
+import { Loader } from "../../App/components/Loader";
 
 function CovidState() {
     const classes = useStyles();
-    const DataLoading = OnLoadingCovidData(CovidData);
-    const [covidState, setCovidState] = useState({
-        loading: true,
-        covidData: null,
-    });
-
-    useEffect(() => {
-        const apiUrl = "https://api.covid19api.com/summary";
-        axios.get(apiUrl).then((resp) => {
-            const allCovidData = resp.data;
-            setCovidState({ loading: false, covidData: allCovidData });
-        });
-    }, [setCovidState]);
+    const loading = useSelector((state) => state.app.loading);
+    debugger;
+    if (loading) {
+        return <Loader />;
+    }
 
     return (
         <Container className={classes.covid}>
-            <DataLoading
-                isLoading={covidState.loading}
-                covidData={covidState.covidData}
-            />
+            <CovidData />
         </Container>
     );
 }
