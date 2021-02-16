@@ -40,7 +40,7 @@ function PhoneBook(props) {
                 <br />
                 <Button
                     variant="outlined"
-                    style={{ backgroundColor: "red" }}
+                    className={classes.red}
                     onClick={deleteSelectedContactsHandler}
                 >
                     Delete Selected

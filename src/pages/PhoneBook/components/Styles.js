@@ -14,7 +14,6 @@ const useStyles = makeStyles((theme) => ({
     contact: {
         marginTop: theme.spacing(2),
     },
-
     li: {
         display: "flex",
         justifyContent: "space-between",
@@ -23,17 +22,22 @@ const useStyles = makeStyles((theme) => ({
         border: "1px solid #ccc",
         marginBottom: ".5rem",
     },
-
     rm: {
         background: "red",
+        marginLeft: "10px",
     },
-
     orange: {
         backgroundColor: "orange",
     },
-
+    red: {
+        backgroundColor: "red",
+    },
     selected: {
         backgroundColor: "blue",
+    },
+    contactBox: {
+        display: "flex",
+        justifyContent: "center",
     },
 }));
 

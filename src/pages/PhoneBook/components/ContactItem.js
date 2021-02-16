@@ -21,6 +21,10 @@ function ContactItem({ contact, index }) {
         return () => dispatch(selectContact(id));
     }
 
+    function deleteContactHandler(id) {
+        return () => dispatch(deleteContact(id));
+    }
+
     function editContactHandler(newContact) {
         dispatch(
             editContact({
@@ -33,45 +37,32 @@ function ContactItem({ contact, index }) {
     }
 
     return (
-        <>
-            <ListItem className={classes.li}>
-                <Box
-                    style={{
-                        display: "flex",
-                        justifyContent: "center",
-                    }}
-                >
-                    <Checkbox
-                        type="checkbox"
-                        checked={contact.selected}
-                        onChange={selectContactHandler(contact.id)}
-                    />
+        <ListItem className={classes.li}>
+            <Box className={classes.contactBox}>
+                <Checkbox
+                    type="checkbox"
+                    checked={contact.selected}
+                    onChange={selectContactHandler(contact.id)}
+                />
 
-                    <Typography>{index + 1}</Typography>
-                </Box>
-                <Typography variant="h6">{contact.name}</Typography>
-                <Typography variant="h6">{contact.phone}</Typography>
-                <Box
-                    style={{
-                        display: "flex",
-                        justifyContent: "center",
-                    }}
+                <Typography>{index + 1}</Typography>
+            </Box>
+            <Typography variant="h6">{contact.name}</Typography>
+            <Typography variant="h6">{contact.phone}</Typography>
+            <Box className={classes.contactBox}>
+                <AddContact
+                    onCreate={editContactHandler}
+                    isEdit={true}
+                    currentContact={contact}
+                />
+                <Button
+                    className={classes.rm}
+                    onClick={deleteContactHandler(contact.id)}
                 >
-                    <AddContact
-                        onCreate={editContactHandler}
-                        isEdit={true}
-                        currentContact={contact}
-                    />
-                    <Button
-                        className={classes.rm}
-                        onClick={() => dispatch(deleteContact(contact.id))}
-                        style={{ marginLeft: "10px" }}
-                    >
-                        Delete
-                    </Button>
-                </Box>
-            </ListItem>
-        </>
+                    Delete
+                </Button>
+            </Box>
+        </ListItem>
     );
 }
 
