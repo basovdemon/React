@@ -2,7 +2,7 @@ import { Container, Button } from "@material-ui/core";
 import MUIDataTable from "mui-datatables";
 import { useDispatch, useSelector } from "react-redux";
 
-import { useStyles } from "./styles";
+import { useStyles } from "./change_styles";
 
 import { fetchCovid } from "../../../redux/actions";
 
@@ -12,28 +12,11 @@ export function CovidData() {
     const dispatch = useDispatch();
     const covidData = useSelector((state) => state.fetchedCovidData.covidData);
 
-    const columns = [
-        "Country",
-        "CountryCode",
-        "Slug",
-        "NewConfirmed",
-        "TotalConfirmed",
-        "NewDeaths",
-        "TotalDeaths",
-        "NewRecovered",
-        "TotalRecovered",
-    ];
-
     if (!covidData || covidData.length === 0)
         return (
-            <>
-                <Button
-                    variant="outlined"
-                    onClick={() => dispatch(fetchCovid())}
-                >
-                    Get Covid Data
-                </Button>
-            </>
+            <Button variant="outlined" onClick={() => dispatch(fetchCovid())}>
+                Get Covid Data
+            </Button>
         );
 
     const dataGridData = covidData.Countries.map((obj) => ({
@@ -50,6 +33,18 @@ export function CovidData() {
     }));
 
     console.log(dataGridData);
+
+    const columns = [
+        "Country",
+        "CountryCode",
+        "Slug",
+        "NewConfirmed",
+        "TotalConfirmed",
+        "NewDeaths",
+        "TotalDeaths",
+        "NewRecovered",
+        "TotalRecovered",
+    ];
 
     return (
         <Container className={classes.covid}>

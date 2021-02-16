@@ -1,9 +1,8 @@
 import React from "react";
 import { Container } from "@material-ui/core";
-
 import { useSelector } from "react-redux";
 
-import { useStyles } from "./styles";
+import { useStyles } from "./change_styles";
 import { CovidData } from "./CovidData";
 
 import { Loader } from "../../App/components/Loader";
