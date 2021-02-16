@@ -2,7 +2,7 @@ import { Container, Button } from "@material-ui/core";
 import MUIDataTable from "mui-datatables";
 import { useDispatch, useSelector } from "react-redux";
 
-import { useStyles } from "./change_styles";
+import { useStyles } from "./styles";
 
 import { fetchCovid } from "../../../redux/actions";
 
